@@ -16,8 +16,8 @@ import Pointer from "./pointer";
 
 
 const images = [VideoStart, one, two, three, four, five, six];
-const Slider = () => {
-       const [curentIndex, setCurentIndex] = useState(0);
+const Slider = ({curentIndex, setCurentIndex}) => {
+      
     const [staComp, setStaComp] = useState('video');
      const slideStyle = {
         width: '100%',
