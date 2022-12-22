@@ -1,5 +1,6 @@
 import React from "react";
 import { RxCaretLeft} from "react-icons/rx";
+import play from './play'
 const ArrowLeft = ({curentIndex, setCurentIndex, images}) => {
     const leftArrow = {
         fontSize: '45px', 
@@ -11,6 +12,7 @@ const ArrowLeft = ({curentIndex, setCurentIndex, images}) => {
         const ifFirstSlide = curentIndex === 0;
         const newIndex = ifFirstSlide ? images.length - 1 : curentIndex - 1;
         setCurentIndex(newIndex);
+        play();
     }
     const mouseEnter = (e) => {
         e.target.style.borderRadius = '50%';

@@ -1,8 +1,11 @@
 import React from "react";
-import VideoStart from '../assets/vadeo.mp4'
+import { Link, Router } from "react-router-dom";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Header from './header'
 import Slider from './slider/Slider'
 import { useState } from "react";
+
 const Main = () => {
  const countainerSlide = {
     width: '100%',
@@ -41,6 +44,7 @@ const Main = () => {
         smolDes:'Observe, present and marvel at your product at every stage of design'
       },
   ];
+  const listArt = ['All CGIs', 'Architectural Visualization', 'Interior Visualization', '3D Product Rendering', '3D Animation',  'Apartment selector', 'Virtual Reality']
     return(
         <div className="main">
 <div style={countainerSlide}> 
@@ -48,8 +52,31 @@ const Main = () => {
 </div>
 <Header/> 
 <div className="content">
-    <h1>{desc[curentIndex].descreption}</h1>
-    <p>{desc[curentIndex].smolDes}</p> 
+
+<ul className="listArt">
+  {listArt.map((el, index)=>{
+    return <li key={index}>
+    <Link className="link" to='/'>{el}</Link>
+    </li>
+  })}
+  
+
+</ul>
+
+    <h1 className="deskTitle">{desc[curentIndex].descreption}</h1>
+    
+    <p className="smdeskTitle">{desc[curentIndex].smolDes}</p> 
+
+    <Box sx={{ flexGrow: 0 }}>
+            <Button sx={{background: 'black', marginTop:6, borderRadius: '20px', color: 'white', width: '20vh',
+            height: '6vh',
+            fontFamily: ['Quicksand', 'sans-serif'].join(','), 
+            fontSize: 12,
+            zIndex:1,
+           }}>
+                SHOW MORE WORKS
+            </Button>
+          </Box>
 </div>
 
         </div>

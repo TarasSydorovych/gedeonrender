@@ -1,6 +1,5 @@
 import React from "react";
-import {useState} from 'react'
-import {style} from 'typestyle'
+import play from './play'
 import { TbTallymark1 } from "react-icons/tb";
 const Pointer = ({setCurentIndex, images}) => {
     
@@ -15,6 +14,7 @@ const Pointer = ({setCurentIndex, images}) => {
     }
     const clickPoint = (id) => {
         setCurentIndex(id);
+        play();
     }
     
     return(

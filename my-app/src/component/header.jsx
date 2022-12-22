@@ -1,13 +1,13 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Logo from '../assets/logo/logo.png'
 import { CardMedia, Card} from '@mui/material';
@@ -42,7 +42,7 @@ function Header() {
     color: '#fdfdfd', 
      
     fontSize: 13, 
-    fontFamily: ['Roboto Condensed', 'sans-serif'].join(','), 
+    fontFamily: ['Quicksand', 'sans-serif'].join(','), 
     fontWeight: 'bold'
       }
       const mouseEnter = (e) => {
