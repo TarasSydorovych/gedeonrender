@@ -126,5 +126,6 @@ cursor: pointer;
 .wrapClassPic:hover > .h1ListHeader{
   transition: all 1s ease-out;
   opacity: 1;
+  font-size: 50px;
 }
 
