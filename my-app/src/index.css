@@ -101,4 +101,30 @@ cursor: pointer;
   cursor:pointer;
     pointer-events: auto;
 }
+.imageListHeader {
+  transition: all 1s ease-out;
+}
+.h1ListHeader {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s ease-out;
+    opacity: 0;
+           color: #05c495;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+}
+.wrapClassPic{
+  overflow: hidden;
+   opacity: 1;
+    height: 100%;
+     position: relative; 
+     text-align: center;
+}
+.wrapClassPic:hover > .h1ListHeader{
+  transition: all 1s ease-out;
+  opacity: 1;
+}
 
