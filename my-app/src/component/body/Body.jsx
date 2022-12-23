@@ -16,7 +16,8 @@ import eight from '../../assets/Renders/8.jpg'
 import nine from '../../assets/Renders/9.jpg'
 import then from '../../assets/Renders/10.jpg'
 import eleven from '../../assets/Renders/11.jpg'
-import twelv from '../../assets/Renders/12.jpg'
+import twelve from '../../assets/Renders/12.jpg'
+import thirteen from '../../assets/Renders/13.jpg'
 export default function Body() {
     const styleTypo = {
         width: '70%',
@@ -132,8 +133,14 @@ const itemData = [
     author: 'Fi Bell',
   },
   {
-    img: twelv,
+    img: twelve,
     title: 'Coffee table',
     author: 'Hutomo Abrianto',
   },
+  {
+    img: thirteen,
+    title: 'Coffee table',
+    author: 'Hutomo Abrianto',
+  },
+ 
 ];
