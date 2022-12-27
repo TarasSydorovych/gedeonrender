@@ -13,11 +13,12 @@ import { useEffect } from "react";
 import ArrowLeft from "./arrowLeft";
 import ArrowRight from "./arrowRight";
 import Pointer from "./pointer";
-
+import play from './play'
 
 const images = [VideoStart, one, two, three, four, five, six];
 const Slider = ({curentIndex, setCurentIndex}) => {
-      
+    let delay = 6000;
+    
     const [staComp, setStaComp] = useState('video');
      const slideStyle = {
         width: '100%',
@@ -25,6 +26,7 @@ const Slider = ({curentIndex, setCurentIndex}) => {
         display: 'flex',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
+        
           }
     const slideStyleArrow ={
         display: 'flex',
@@ -40,19 +42,35 @@ const Slider = ({curentIndex, setCurentIndex}) => {
     const slideStylePoint ={
         alignSelf: 'flex-end',
         }
+      
         useEffect(() => {
-        if(curentIndex !== 0){
-            setStaComp('img');
-        }else{
-            setStaComp('video');
-        }
+            if(curentIndex !== 0){
+                delay=6000;
+                setStaComp('img');
+            }else{
+                delay=15000;
+                setStaComp('video');
+                
+            }
+            setTimeout(
+                () =>{
+                const ifLastSlide = curentIndex === images.length - 1;
+                const newIndex = ifLastSlide ? 0 : curentIndex + 1;
+                setCurentIndex(newIndex);},
+                  delay
+              );
+          
+              return () => {};
     },[curentIndex])
+
     return(
         <Card style={slideStyle}>
         <CardMedia
        component={staComp}
         sx={{ width: '100%',
-        height: '100%',  zIndex: 0}}
+        height: '100%',  zIndex: 0,
+        
+    }}
         autoPlay 
         loop muted
         src={images[curentIndex]}

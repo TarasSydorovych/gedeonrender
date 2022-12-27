@@ -13,7 +13,7 @@ const ArrowRight = ({curentIndex, setCurentIndex, images}) => {
         const ifLastSlide = curentIndex === images.length - 1;
         const newIndex = ifLastSlide ? 0 : curentIndex + 1;
         setCurentIndex(newIndex);
-        play();
+        
     }
     const mouseEnter = (e) => {
         e.target.style.borderRadius = '50%';

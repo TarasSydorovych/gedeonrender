@@ -43,10 +43,10 @@ const socialIcon = {
           </p>
           
           <h1>We are social</h1>
-         <Link to=''> <AiFillFacebook style={socialIcon}/></Link>
-         <Link to=''> <AiOutlineLinkedin style={socialIcon}/></Link>
-         <Link to=''> <AiFillBehanceSquare style={socialIcon}/></Link>
-         <Link to=''><AiFillInstagram style={socialIcon}/></Link>
+          <a href='https://www.facebook.com/oleg.lukianenko.73' target='blank'><AiFillFacebook style={socialIcon}/></a>
+         <a href='https://www.linkedin.com/in/oleg-lukianenko-6986708b/' target='blank'> <AiOutlineLinkedin style={socialIcon}/></a>
+         <a href='https://www.behance.net/lukyanenko3046' target='blank'> <AiFillBehanceSquare style={socialIcon}/></a>
+         <a href='https://www.instagram.com/_gedeonstudio/' target='blank'><AiFillInstagram style={socialIcon}/></a>
 
         </div>
     </div>
