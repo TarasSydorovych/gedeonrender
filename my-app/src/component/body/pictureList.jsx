@@ -2,9 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Typography from '@mui/material/Typography'
-import { Hidden } from '@mui/material';
 import one from '../../assets/Renders/1.jpg'
 import two from '../../assets/Renders/2.jpg'
 import thre from '../../assets/Renders/3.jpg'
@@ -51,7 +49,7 @@ export default function PictureList() {
      >
     A Gallery of Our 3D-Rendering Works
     </Typography>
-    <Box sx={{ width: '97%', height: 450, marginLeft: '1.5%', marginRight: '1.5%', }}>
+    <Box sx={{ width: '97%', marginLeft: '1.5%', marginRight: '1.5%', marginBottom: '10px' }}>
       <ImageList  variant="masonry" cols={3} gap={8}>
         {itemData.map((item) => (
           <ImageListItem className='wrapClassPic' key={item.img} >
