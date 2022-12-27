@@ -15,14 +15,14 @@ const longArrow = {
  background: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='142.406' height='11.32' viewBox='0 0 142.406 11.32'%3E%3Cpath fill='%2364ca9d' d='M582,7962v-2H722v2H582Zm135.324-4.96,1.414-1.41,5.657,5.65-1.414,1.42Zm1.414,9.9-1.414-1.41,5.657-5.66,1.414,1.41Z' transform='translate(-582 -7955.62)'/%3E%3C/svg%3E%0A")`,
 }
 const styledFirstIcon ={
-  fontSize: 120,
+  fontSize: 80,
   color: '#64ca9d',
   margin: 10
 }
   return (
     <>
     <Box sx={{width: '100%',  background: '#e8eaea', marginTop: '30px', display: 'flex',justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-        <Box sx={{width: '100%', background: '#e8eaea', marginTop: '120px', marginBottom: '120px', display: 'flex',justifyContent: 'space-between', alignItems: 'center', flexDirection: 'column'}}>
+        <Box sx={{width: '100%', background: '#e8eaea', marginTop: '120px', marginBottom: 'px', display: 'flex',justifyContent: 'space-between', alignItems: 'center', flexDirection: 'column'}}>
     <Typography 
      variant="h2"
      sx={{
