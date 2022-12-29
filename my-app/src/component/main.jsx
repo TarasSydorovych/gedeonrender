@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Router } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -7,12 +7,14 @@ import Slider from './slider/Slider'
 import { useState } from "react";
 import Body from "./body/Body";
 
-const Main = () => {
+const Main = ({setBackground}) => {
  const countainerSlide = {
     width: '100%',
     height: '750px'
  }
-
+useEffect(()=>{
+  setBackground('inherit')
+})
 
  const [curentIndex, setCurentIndex] = useState(0);
  const desc = [

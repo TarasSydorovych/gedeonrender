@@ -14,8 +14,10 @@ import { CardMedia, Card} from '@mui/material';
 import { useState } from 'react';
 import { useRef,useEffect } from 'react';
 
-function Header() {
-const appBarStyleFirst = { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: 'inherit',};
+function Header({background}) {
+  console.log(background)
+const appBarStyleFirst = { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: `${background}`,};
+const appBarStyleW = { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: '#e8eaea',};
 const appBarStyleTwo =   { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: '#e8eaea',};
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -27,22 +29,38 @@ const appBarStyleTwo =   { justifyContent: 'center' , fontFamily: ['Impact', 'cu
     setAnchorElNav(null);
   };
 const navRef = useRef();
+const isBackgroundWhite = true;
 navRef.current = styleAppBar;
   const pages = ['HOME', 'PORTFOLIO', 'ABOUT US', 'WORKFLOW', 'PRICES', 'IMPRESSUM'];
 useEffect(()=>{
+
 const handlscroll = () => {
-  const show  = window.scrollY > 340;
+
+  const show  = window.scrollY > 640;
+  
+  console.log(document.getElementsByClassName('headerCheck')[0]);
+ 
   if(show) {
     setStyleAppBar(appBarStyleTwo)
   }else{
+    if(isBackgroundWhite){
+
+    }
     setStyleAppBar(appBarStyleFirst)
   }
+
+}
+function ready() {
+  alert('DOM is ready');
+
 }
 document.addEventListener('scroll', handlscroll)
+
 return () => {
   document.removeEventListener('scroll', handlscroll)
+ 
 }
-}, [])
+}, [background])
 
   const listStyle = {
     
@@ -63,7 +81,7 @@ return () => {
         e.target.style.borderBottom = 'none';
       }
   return ( 
-    <AppBar style={navRef.current}>
+    <AppBar className='headerCheck' style={navRef.current}>
       <Container maxWidth="xl">
         <Toolbar disableGutters >
           

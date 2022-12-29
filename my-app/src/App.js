@@ -8,14 +8,17 @@ import Footer from './component/footer'
 import PicturePage from './component/picturePage';
 import Header from './component/header'
 import Product from './component/product/product';
+import { useState } from 'react';
 function App() {
+  
+  const [background, setBackground] = useState('inherit')
   return (
     <div>
       
-      <Header/> 
+      <Header background={background}/> 
       <Routes>
-      <Route path='/' element={<Main/>}/>
-      <Route path='/product' element={<Product/>}/>
+      <Route path='/' element={<Main background={background} setBackground={setBackground}/>}/>
+      <Route path='/product' element={<Product background={background} setBackground={setBackground}/>}/>
       
       </Routes>
       <Footer/>
