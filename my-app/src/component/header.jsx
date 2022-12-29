@@ -11,28 +11,39 @@ import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
 import Logo from '../assets/logo/logo.png'
 import { CardMedia, Card} from '@mui/material';
-
-
+import { useState } from 'react';
+import { useRef,useEffect } from 'react';
 
 function Header() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+const appBarStyleFirst = { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: 'inherit',};
+const appBarStyleTwo =   { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: '#e8eaea',};
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [styleAppBar, setStyleAppBar] = useState(appBarStyleFirst);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+const navRef = useRef();
+navRef.current = styleAppBar;
   const pages = ['HOME', 'PORTFOLIO', 'ABOUT US', 'WORKFLOW', 'PRICES', 'IMPRESSUM'];
+useEffect(()=>{
+const handlscroll = () => {
+  const show  = window.scrollY > 340;
+  if(show) {
+    setStyleAppBar(appBarStyleTwo)
+  }else{
+    setStyleAppBar(appBarStyleFirst)
+  }
+}
+document.addEventListener('scroll', handlscroll)
+return () => {
+  document.removeEventListener('scroll', handlscroll)
+}
+}, [])
+
   const listStyle = {
     
     height: 80,
@@ -52,7 +63,7 @@ function Header() {
         e.target.style.borderBottom = 'none';
       }
   return ( 
-    <AppBar position="absolute" sx={{ justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: 'inherit', position: "absolute"}}>
+    <AppBar style={navRef.current}>
       <Container maxWidth="xl">
         <Toolbar disableGutters >
           

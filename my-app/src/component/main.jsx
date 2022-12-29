@@ -2,9 +2,10 @@ import React from "react";
 import { Link, Router } from "react-router-dom";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Header from './header'
+
 import Slider from './slider/Slider'
 import { useState } from "react";
+import Body from "./body/Body";
 
 const Main = () => {
  const countainerSlide = {
@@ -47,10 +48,11 @@ const Main = () => {
   const listArt = ['All CGIs', 'Architectural Visualization', 'Interior Visualization', '3D Product Rendering', '3D Animation',  'Apartment selector', 'Virtual Reality']
     return(
         <div className="main">
+          
 <div style={countainerSlide}> 
 <Slider curentIndex={curentIndex} setCurentIndex={setCurentIndex}/>
 </div>
-<Header/> 
+
 <div className="content">
 
 <ul className="listArt">
@@ -78,7 +80,7 @@ const Main = () => {
             </Button>
           </Box>
 </div>
-
+<Body/>
         </div>
     )
 }
