@@ -7,7 +7,7 @@ import Slider from './slider/Slider'
 import { useState } from "react";
 import Body from "./body/Body";
 
-const Main = ({setBackground}) => {
+const Main = ({setBackground, listProduct}) => {
  const countainerSlide = {
     width: '100%',
     height: '750px'
@@ -47,28 +47,21 @@ useEffect(()=>{
         smolDes:'Observe, present and marvel at your product at every stage of design'
       },
   ];
-  const listArt = ['All CGIs', 'Architectural Visualization', 'Interior Visualization', '3D Product Rendering', '3D Animation',  'Apartment selector', 'Virtual Reality']
+  const listArt = ['All CGIs', 'Architectural Visualization', 'Interior Visualization', '3D Product Rendering', '3D Animation',  'Apartment selector', 'Virtual Reality'];
     return(
         <div className="main">
-          
 <div style={countainerSlide}> 
 <Slider curentIndex={curentIndex} setCurentIndex={setCurentIndex}/>
 </div>
-
 <div className="content">
-
 <ul className="listArt">
   {listArt.map((el, index)=>{
     return <li key={index}>
     <Link className="link" to='/'>{el}</Link>
     </li>
   })}
-  
-
 </ul>
-
     <h1 className="deskTitle">{desc[curentIndex].descreption}</h1>
-    
     <p className="smdeskTitle">{desc[curentIndex].smolDes}</p> 
 
     <Box sx={{ flexGrow: 0 }}>
@@ -82,7 +75,7 @@ useEffect(()=>{
             </Button>
           </Box>
 </div>
-<Body/>
+<Body listProduct={listProduct}/>
         </div>
     )
 }

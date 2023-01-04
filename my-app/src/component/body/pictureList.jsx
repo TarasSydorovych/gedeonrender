@@ -3,20 +3,11 @@ import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import Typography from '@mui/material/Typography'
-import one from '../../assets/Renders/1.jpg'
-import two from '../../assets/Renders/2.jpg'
-import thre from '../../assets/Renders/3.jpg'
-import four from '../../assets/Renders/4.jpg'
-import five from '../../assets/Renders/5.jpg'
-import six from '../../assets/Renders/6.jpg'
-import seven from '../../assets/Renders/7.jpg'
-import eight from '../../assets/Renders/8.jpg'
-import nine from '../../assets/Renders/9.jpg'
-import then from '../../assets/Renders/10.jpg'
-import eleven from '../../assets/Renders/11.jpg'
-import twelve from '../../assets/Renders/12.jpg'
-import thirteen from '../../assets/Renders/13.jpg'
-export default function PictureList() {
+
+import { useEffect } from 'react';
+import { useState } from 'react';
+export default function PictureList({listProduct}) {
+  const [load, setLoad] = useState(false);
     const styleTypo = {
         width: '70%',
         height: 180,
@@ -41,6 +32,12 @@ export default function PictureList() {
     e.target.style.filter = '';
    
    }
+   useEffect(()=>{
+    setLoad(true)
+   },[listProduct])
+   if(!load){
+    return <div>Load Picture</div>
+   }else{
   return (
     <>
     <Typography 
@@ -51,8 +48,9 @@ export default function PictureList() {
     </Typography>
     <Box sx={{ width: '97%', marginLeft: '1.5%', marginRight: '1.5%', marginBottom: '10px' }}>
       <ImageList  variant="masonry" cols={3} gap={8}>
-        {itemData.map((item) => (
+        {listProduct.map((item) => (
           <ImageListItem className='wrapClassPic' key={item.img} >
+           {console.log(item.img)}
             <img 
             className='imageListHeader'
               src={`${item.img}?w=248&fit=crop&auto=format`}
@@ -62,10 +60,10 @@ export default function PictureList() {
               onMouseEnter={mouseEnter}
               onMouseLeave={mouseLeave} 
             >
-                
+              
             </img>
            <h1 className='h1ListHeader'
-           >Interior Visualization</h1>
+           >{item.desc}</h1>
           </ImageListItem>
         ))}
       </ImageList>
@@ -73,72 +71,5 @@ export default function PictureList() {
     </>
   );
 }
+}
 
-const itemData = [
-  {
-    img: one,
-    title: 'Bed',
-    author: 'swabdesign',
-  },
-  {
-    img: two,
-    title: 'Books',
-    author: 'Pavel Nekoranec',
-  },
-  {
-    img: thre,
-    title: 'Sink',
-    author: 'Charles Deluvio',
-  },
-  {
-    img: four,
-    title: 'Kitchen',
-    author: 'Christian Mackie',
-  },
-  {
-    img: five,
-    title: 'Blinds',
-    author: 'Darren Richardson',
-  },
-  {
-    img: six,
-    title: 'Chairs',
-    author: 'Taylor Simpson',
-  },
-  {
-    img: seven,
-    title: 'Laptop',
-    author: 'Ben Kolde',
-  },
-  {
-    img: eight,
-    title: 'Doors',
-    author: 'Philipp Berndt',
-  },
-  {
-    img: nine,
-    title: 'Coffee',
-    author: 'Jen P.',
-  },
-  {
-    img: then,
-    title: 'Storage',
-    author: 'Douglas Sheppard',
-  },
-  {
-    img: eleven,
-    title: 'Candle',
-    author: 'Fi Bell',
-  },
-  {
-    img: twelve,
-    title: 'Coffee table',
-    author: 'Hutomo Abrianto',
-  },
-  {
-    img: thirteen,
-    title: 'Coffee table',
-    author: 'Hutomo Abrianto',
-  },
- 
-];

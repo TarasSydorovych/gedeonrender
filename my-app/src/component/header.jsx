@@ -14,11 +14,11 @@ import { CardMedia, Card} from '@mui/material';
 import { useState } from 'react';
 import { useRef,useEffect } from 'react';
 
-function Header({background}) {
+function Header({background, setBackground}) {
   console.log(background)
 const appBarStyleFirst = { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: `${background}`,};
-const appBarStyleW = { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: '#e8eaea',};
-const appBarStyleTwo =   { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: '#e8eaea',};
+const appBarStyleW = { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: '#142c2d',};
+const appBarStyleTwo =   { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: '#142c2d',};
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [styleAppBar, setStyleAppBar] = useState(appBarStyleFirst);
@@ -35,33 +35,20 @@ navRef.current = styleAppBar;
 useEffect(()=>{
 
 const handlscroll = () => {
-
   const show  = window.scrollY > 640;
-  
-  console.log(document.getElementsByClassName('headerCheck')[0]);
- 
   if(show) {
     setStyleAppBar(appBarStyleTwo)
   }else{
     if(isBackgroundWhite){
-
     }
     setStyleAppBar(appBarStyleFirst)
   }
-
-}
-function ready() {
-  alert('DOM is ready');
-
 }
 document.addEventListener('scroll', handlscroll)
-
 return () => {
   document.removeEventListener('scroll', handlscroll)
- 
 }
 }, [background])
-
   const listStyle = {
     
     height: 80,

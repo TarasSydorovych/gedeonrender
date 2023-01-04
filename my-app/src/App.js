@@ -1,24 +1,58 @@
 import logo from './logo.svg';
 import './App.css';
-
 import Main from './component/main'
-import Body from './component/body/Body'
+import PortBody from './component/portfolio/portBody'
 import {Routes, Route} from 'react-router-dom'
 import Footer from './component/footer'
-import PicturePage from './component/picturePage';
 import Header from './component/header'
 import Product from './component/product/product';
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 function App() {
-  
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [listProduct, setListProduct] = useState();
+  const [product, setProduct] = useState();
+  useEffect(()=>{
+    axios.get(`http://127.0.0.1:4000/list`)
+    .then((result) => {
+      setListProduct(result.data);
+      setIsLoaded(true);
+      
+    },
+    (error) => {
+      setIsLoaded(true);
+      setError(error);
+    }
+    )
+  }, [])
+  useEffect(()=>{
+    axios.get(`http://127.0.0.1:4000/product`)
+    .then((result) => {
+      setProduct(result.data);
+      setIsLoaded(true);
+      
+    },
+    (error) => {
+      setIsLoaded(true);
+      setError(error);
+    }
+    )
+  }, [])
   const [background, setBackground] = useState('inherit')
+  if(error){
+    return <div>Error: {error.message}</div>;
+  }else if(!isLoaded){
+    return <div>Loading...</div>
+  }else{
   return (
     <div>
       
-      <Header background={background}/> 
+      <Header background={background} setBackground={setBackground}/> 
       <Routes>
-      <Route path='/' element={<Main background={background} setBackground={setBackground}/>}/>
-      <Route path='/product' element={<Product background={background} setBackground={setBackground}/>}/>
+      <Route path='/' element={<Main background={background} setBackground={setBackground} listProduct={listProduct}/>}/>
+      <Route path='/product' element={<Product background={background} setBackground={setBackground} product={product}/>}/>
+      <Route path='/portfolio' element={<PortBody background={background} setBackground={setBackground} product={product} listProduct={listProduct}/>}/>
       
       </Routes>
       <Footer/>
@@ -38,6 +72,7 @@ function App() {
       
     </div>
   );
+}
 }
 
 export default App;
