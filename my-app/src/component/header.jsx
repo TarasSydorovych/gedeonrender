@@ -9,6 +9,7 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
+import { Link, Router } from "react-router-dom";
 import Logo from '../assets/logo/logo.png'
 import { CardMedia, Card} from '@mui/material';
 import { useState } from 'react';
@@ -153,10 +154,10 @@ return () => {
           <Box sx={{marginLeft: 13, flexGrow: 1,  display: { xs: 'none', md: 'flex' } }}>
           
           {pages.map((el) => {
-          return  <MenuItem  style={listStyle}
+          return <Link style={{textDecoration: 'none'}} to={`/${el.toLowerCase()}`}> <MenuItem  style={listStyle}
            onMouseEnter={mouseEnter}
            onMouseLeave={mouseLeave} 
-          >{el}</MenuItem>
+          >{el}</MenuItem></Link>
           })}
           
           

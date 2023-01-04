@@ -7,38 +7,24 @@ import Footer from './component/footer'
 import Header from './component/header'
 import Product from './component/product/product';
 import axios from 'axios';
+import {fetchPicture, fetchProduct} from './api'
 import { useEffect, useState } from 'react';
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [listProduct, setListProduct] = useState();
   const [product, setProduct] = useState();
+ 
+  
   useEffect(()=>{
-    axios.get(`http://127.0.0.1:4000/list`)
-    .then((result) => {
-      setListProduct(result.data);
-      setIsLoaded(true);
-      
-    },
-    (error) => {
-      setIsLoaded(true);
-      setError(error);
-    }
-    )
+    fetchProduct()
+    .then(res => {setProduct(res.data); setIsLoaded(true); console.log('fetchmethod product res', res.data)})
+
+    fetchPicture()
+    .then(res => {setListProduct(res.data); setIsLoaded(true); console.log('fetchmethod listProduct res', res.data)})
   }, [])
-  useEffect(()=>{
-    axios.get(`http://127.0.0.1:4000/product`)
-    .then((result) => {
-      setProduct(result.data);
-      setIsLoaded(true);
-      
-    },
-    (error) => {
-      setIsLoaded(true);
-      setError(error);
-    }
-    )
-  }, [])
+  
+  
   const [background, setBackground] = useState('inherit')
   if(error){
     return <div>Error: {error.message}</div>;
@@ -51,7 +37,7 @@ function App() {
       <Header background={background} setBackground={setBackground}/> 
       <Routes>
       <Route path='/' element={<Main background={background} setBackground={setBackground} listProduct={listProduct}/>}/>
-      <Route path='/product' element={<Product background={background} setBackground={setBackground} product={product}/>}/>
+      <Route path='/product/:id' element={<Product background={background} setBackground={setBackground} product={product}/>}/>
       <Route path='/portfolio' element={<PortBody background={background} setBackground={setBackground} product={product} listProduct={listProduct}/>}/>
       
       </Routes>

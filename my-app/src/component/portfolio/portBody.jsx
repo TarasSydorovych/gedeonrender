@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography'
 import { Link, Router } from "react-router-dom";
 import { useEffect } from 'react';
 import { useState } from 'react';
-export default function PortBody({listProduct}) {
+export default function PortBody({listProduct, product}) {
   const [load, setLoad] = useState(false);
     const styleTypo = {
         width: '70%',
@@ -33,6 +33,7 @@ export default function PortBody({listProduct}) {
     e.target.style.filter = '';
    
    }
+   
    const listArt = ['All CGIs', 'Architectural Visualization', 'Interior Visualization', '3D Product Rendering', '3D Animation',  'Apartment selector', 'Virtual Reality'];
    useEffect(()=>{
     setLoad(true)
@@ -60,13 +61,13 @@ export default function PortBody({listProduct}) {
     </Typography>
     <Box sx={{ width: '97%', marginLeft: '1.5%', marginRight: '1.5%', marginBottom: '10px' }}>
       <ImageList  variant="masonry" cols={3} gap={8}>
-        {listProduct.map((item) => (
-          <ImageListItem className='wrapClassPic' key={item.img} >
+        {product.map((item, index) => (
+          <ImageListItem className='wrapClassPic' key={index} >
            {console.log(item.img)}
             <img 
             className='imageListHeader'
-              src={`${item.img}?w=248&fit=crop&auto=format`}
-              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              src={`/${item.img[0].img}?w=248&fit=crop&auto=format`}
+              srcSet={`/${item.img[0].img}?w=248&fit=crop&auto=format&dpr=2 2x`}
               alt={item.title}
               loading="lazy"
               onMouseEnter={mouseEnter}
@@ -75,7 +76,13 @@ export default function PortBody({listProduct}) {
               
             </img>
            <h1 className='h1ListHeader'
-           >{item.desc}</h1>
+           ><Link style={{
+            textDecoration: 'none',
+            color: '#142c2d',
+            fontWeight: 'bolder'
+           }} to={`/product/${item._id}`}>
+            {item.title}
+            </Link></h1>
           </ImageListItem>
         ))}
       </ImageList>

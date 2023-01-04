@@ -12,6 +12,7 @@ const Main = ({setBackground, listProduct}) => {
     width: '100%',
     height: '750px'
  }
+ 
 useEffect(()=>{
   setBackground('inherit')
 })
