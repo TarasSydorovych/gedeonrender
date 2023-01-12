@@ -10,11 +10,16 @@ import axios from 'axios';
 import {fetchPicture, fetchProduct} from './api'
 import { useEffect, useState } from 'react';
 function App() {
-  const [error, setError] = useState(null);
+  const [background, setBackground] = useState('inherit')
+  const appBarStyleFirst = { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: `${background}`,};
+const appBarStyleW = { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: '#142c2d',};
+const appBarStyleTwo =   { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: '#142c2d',};
+ 
+const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [listProduct, setListProduct] = useState();
   const [product, setProduct] = useState();
- 
+  const [styleAppBar, setStyleAppBar] = useState(appBarStyleFirst);
   
   useEffect(()=>{
     fetchProduct()
@@ -25,7 +30,7 @@ function App() {
   }, [])
   
   
-  const [background, setBackground] = useState('inherit')
+ 
   if(error){
     return <div>Error: {error.message}</div>;
   }else if(!isLoaded){
@@ -34,11 +39,11 @@ function App() {
   return (
     <div>
       
-      <Header background={background} setBackground={setBackground}/> 
+      <Header background={background} setBackground={setBackground} appBarStyleTwo={appBarStyleTwo} styleAppBar={styleAppBar} setStyleAppBar={setStyleAppBar}/> 
       <Routes>
-      <Route path='/' element={<Main background={background} setBackground={setBackground} listProduct={listProduct}/>}/>
-      <Route path='/product/:id' element={<Product background={background} setBackground={setBackground} product={product}/>}/>
-      <Route path='/portfolio' element={<PortBody background={background} setBackground={setBackground} product={product} listProduct={listProduct}/>}/>
+      <Route path='/' element={<Main appBarStyleFirst={appBarStyleFirst} appBarStyleTwo={appBarStyleTwo} setStyleAppBar={setStyleAppBar} styleAppBar={styleAppBar} listProduct={listProduct}/>}/>
+      <Route path='/product/:id' element={<Product appBarStyleTwo={appBarStyleTwo} setStyleAppBar={setStyleAppBar} product={product} styleAppBar={styleAppBar}/>}/>
+      <Route path='/portfolio' element={<PortBody  product={product} listProduct={listProduct}  appBarStyleTwo={appBarStyleTwo} setStyleAppBar={setStyleAppBar}/>}/>
       
       </Routes>
       <Footer/>

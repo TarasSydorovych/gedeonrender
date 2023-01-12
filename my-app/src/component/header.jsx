@@ -15,14 +15,14 @@ import { CardMedia, Card} from '@mui/material';
 import { useState } from 'react';
 import { useRef,useEffect } from 'react';
 
-function Header({background, setBackground}) {
-  console.log(background)
-const appBarStyleFirst = { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: `${background}`,};
+function Header({styleAppBar}) {
+ 
+
 const appBarStyleW = { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: '#142c2d',};
-const appBarStyleTwo =   { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: '#142c2d',};
+//const appBarStyleTwo =   { justifyContent: 'center' , fontFamily: ['Impact', 'cursive'].join(','), height: 81, background: '#142c2d',};
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [styleAppBar, setStyleAppBar] = useState(appBarStyleFirst);
+  //const [styleAppBar, setStyleAppBar] = useState(appBarStyleFirst);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -33,23 +33,7 @@ const navRef = useRef();
 const isBackgroundWhite = true;
 navRef.current = styleAppBar;
   const pages = ['HOME', 'PORTFOLIO', 'ABOUT US', 'WORKFLOW', 'PRICES', 'IMPRESSUM'];
-useEffect(()=>{
 
-const handlscroll = () => {
-  const show  = window.scrollY > 640;
-  if(show) {
-    setStyleAppBar(appBarStyleTwo)
-  }else{
-    if(isBackgroundWhite){
-    }
-    setStyleAppBar(appBarStyleFirst)
-  }
-}
-document.addEventListener('scroll', handlscroll)
-return () => {
-  document.removeEventListener('scroll', handlscroll)
-}
-}, [background])
   const listStyle = {
     
     height: 80,

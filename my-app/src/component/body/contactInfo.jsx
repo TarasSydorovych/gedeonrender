@@ -1,14 +1,39 @@
 
 import * as React from 'react';
 import { AiFillFacebook, AiOutlineLinkedin, AiFillBehanceSquare, AiFillInstagram } from "react-icons/ai";
-
-
+import { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import Swal from 'sweetalert2';
 import {Link} from 'react-router-dom'
 export default function ContactInfo() {
+  const form = useRef();
 const socialIcon = {
   fontSize: 50,
   color: '#05c495',
 }
+const SERVICE_ID = "service_xh5ymdk";
+const TEMPLATE_ID = "template_zqbdjvp";
+const USER_ID = "My9e5IjpQ2yIY3t12";
+
+const sendEmail = (e) => {
+  
+  e.preventDefault();
+
+  emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, USER_ID)
+    .then((result) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Message Sent Successfully'
+      })
+    }, (error) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Ooops, something went wrong',
+        text: error.text,
+      })
+    });
+    e.target.reset()
+};
 
   return (
     <>
@@ -51,18 +76,18 @@ const socialIcon = {
         </div>
     </div>
     <div className='wrapper'>
-      <div className='contact-form'>
+      <form className='contact-form' type='submit' ref={form} onSubmit={sendEmail}>
         <div className='input-fields'>
-          <input type="text" className='input' placeholder='Name'/>
-          <input type="text" className='input' placeholder='Email Adress'/>
-          <input type="text" className='input' placeholder='Phone'/>
-          <input type="text" className='input' placeholder='Subject'/>
+          <input type="text" name="user_name" className='input' placeholder='Name'/>
+          <input type="text" className='input' name="user_email" placeholder='Email Adress'/>
+          <input type="text" className='input' name="Phone" placeholder='Phone'/>
+          <input type="text" className='input' name="Subject" placeholder='Subject'/>
         </div>
         <div className='msg'>
-          <textarea placeholder='Message'></textarea>
-          <div className='btn'>Send</div>
+          <textarea placeholder='Message' name="message"></textarea>
+          <button className='btn' type='submit'>Send</button>
         </div>
-      </div>
+      </form>
     </div>
 </div>
     

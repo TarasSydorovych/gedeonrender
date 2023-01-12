@@ -50,13 +50,13 @@ export default function PictureList({listProduct}) {
       <ImageList  variant="masonry" cols={3} gap={8}>
         {listProduct.map((item) => (
           <ImageListItem className='wrapClassPic' key={item.img} >
-           {console.log(item.img)}
+         
             <img 
             className='imageListHeader'
               src={`${item.img}?w=248&fit=crop&auto=format`}
               srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
               alt={item.title}
-              loading="lazy"
+              loading='eager'
               onMouseEnter={mouseEnter}
               onMouseLeave={mouseLeave} 
             >

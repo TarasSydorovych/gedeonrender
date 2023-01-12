@@ -8,11 +8,8 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-export default function Product({setBackground, background, product}) {
+export default function Product({setBackground, background, product, setStyleAppBar,appBarStyleTwo, styleAppBar}) {
 
-  // const [error, setError] = useState(null);
-  // const [isLoaded, setIsLoaded] = useState(false);
-  // const [product, setProduct] = useState();
   let params = useParams();
   const [id, setId] = useState({
     img: [],
@@ -20,16 +17,13 @@ export default function Product({setBackground, background, product}) {
     descr: '',
     client: '',
   });
-  // useEffect(()=>{
-  //   console.log('Зайшли в іф')
-  //   fetchProduct()
-  //   .then(res => {setProduct(res.data); setIsLoaded(true); console.log('fetchmethod from product product res', res.data)})
-  // }, [])
+ 
   useEffect(()=>{
+    setStyleAppBar(appBarStyleTwo)
     for(let i = 0; i<product.length; i++){
     
       if(product[i]._id === params.id){
-        console.log('наш продукт в продукті',product[i])
+        
         setId(product[i]);
         
       }else{
@@ -37,13 +31,12 @@ export default function Product({setBackground, background, product}) {
       }
       
         }
+        
   }, [product])
   
   
+  
 
-  useEffect(()=>{
-    setBackground('#e8eaea')
-  }, [background])
 const containerProd ={
   
     marginTop: '120px'

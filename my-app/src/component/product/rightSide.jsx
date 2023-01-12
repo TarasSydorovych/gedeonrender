@@ -1,14 +1,19 @@
-
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import Product from './product';
 import { useState } from 'react';
+
 import one from '../../assets/Renders/1.jpg'
 import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 export default function RightSide({id}) {
-
+  const [open, setOpen] = useState(false);
+ const arr = id.img.map((el) => {
+return {src: `/${el.img}`}
+ })
  
   return (
     <>
@@ -30,8 +35,9 @@ variant="masonry" cols={1} gap={1}>
           <ImageListItem className='wrapClassPic' sx={{marginRight: 3}}  key={index}>
             
             <img 
+            onClick={() => setOpen(true)}
             style={{marginBottom: 15, }}
-            className='imageListHeader'
+            className='imgRightSide'
               src={`/${el.img}`}
               srcSet={`/${el.img}`}
               alt={'ss'}
@@ -44,6 +50,11 @@ variant="masonry" cols={1} gap={1}>
           
      
       </ImageList>
+      <Lightbox
+        open={open}
+        close={() => setOpen(false)}
+        slides={arr}
+      />
 </div>
     </>
   );

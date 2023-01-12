@@ -15,19 +15,21 @@ import ArrowRight from "./arrowRight";
 import Pointer from "./pointer";
 import play from './play'
 
-const images = [VideoStart, one, two, three, four, five, six];
+const images = [one, one, two, three, four, five, six];
 const Slider = ({curentIndex, setCurentIndex}) => {
     let delay = 6000;
     
     const [staComp, setStaComp] = useState('video');
-     const slideStyle = {
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
+    //  const slideStyle = {
+    //     width: '100%',
+    //     position: 'relative',
+    //     overflow: 'hidden',
+    //     height: '100%',
+    //     display: 'flex',
+    //     backgroundPosition: 'center',
+    //     backgroundSize: 'cover',
         
-          }
+    //       }
     const slideStyleArrow ={
         display: 'flex',
         zIndex: 1,
@@ -44,19 +46,23 @@ const Slider = ({curentIndex, setCurentIndex}) => {
         }
       
         useEffect(() => {
+            let element = document.getElementsByClassName("slideCardMedia");
             if(curentIndex !== 0){
                 delay=6000;
                 setStaComp('img');
             }else{
                 delay=15000;
-                setStaComp('video');
+                setStaComp('img');
                 
             }
             setTimeout(
                 () =>{
                 const ifLastSlide = curentIndex === images.length - 1;
                 const newIndex = ifLastSlide ? 0 : curentIndex + 1;
-                setCurentIndex(newIndex);},
+                setCurentIndex(newIndex);
+               
+
+            },
                   delay
               );
           
@@ -64,17 +70,17 @@ const Slider = ({curentIndex, setCurentIndex}) => {
     },[curentIndex])
 
     return(
-        <Card style={slideStyle}>
+        <Card className="slideStyle">
         <CardMedia
        component={staComp}
-        sx={{ width: '100%',
-        height: '100%',  zIndex: 0,
-        
-    }}
+       className="slideCardMedia"
+       
         autoPlay 
         loop muted
+        loading='lazy'
         src={images[curentIndex]}
       />
+      <div className="overlay"></div>
       <div style={slideStyleArrow}>
       <ArrowLeft curentIndex={curentIndex} setCurentIndex={setCurentIndex} images={images}/>
       <div style={slideStylePoint}>

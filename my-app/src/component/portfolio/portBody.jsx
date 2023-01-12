@@ -6,17 +6,17 @@ import Typography from '@mui/material/Typography'
 import { Link, Router } from "react-router-dom";
 import { useEffect } from 'react';
 import { useState } from 'react';
-export default function PortBody({listProduct, product}) {
+export default function PortBody({listProduct, product,setStyleAppBar,appBarStyleTwo}) {
   const [load, setLoad] = useState(false);
     const styleTypo = {
         width: '70%',
-        height: 180,
+        height: 200,
        position: 'relative',
-       top: 90,
-       left:200,
+       top: 80,
+       left:450,
        fontFamily: ['Quicksand', 'sans-serif'].join(','), 
        fontWeight: 'bolder',
-       fontSize: 40,
+       fontSize: 60,
        marginTop: 40,
     }
   
@@ -33,9 +33,9 @@ export default function PortBody({listProduct, product}) {
     e.target.style.filter = '';
    
    }
-   
    const listArt = ['All CGIs', 'Architectural Visualization', 'Interior Visualization', '3D Product Rendering', '3D Animation',  'Apartment selector', 'Virtual Reality'];
    useEffect(()=>{
+    setStyleAppBar(appBarStyleTwo)
     setLoad(true)
    },[listProduct])
    if(!load){
@@ -57,7 +57,7 @@ export default function PortBody({listProduct, product}) {
      variant="h6"
      style={styleTypo}
      >
-    A Gallery of Our 3D-Rendering Works
+    A Gallery of Our Works
     </Typography>
     <Box sx={{ width: '97%', marginLeft: '1.5%', marginRight: '1.5%', marginBottom: '10px' }}>
       <ImageList  variant="masonry" cols={3} gap={8}>

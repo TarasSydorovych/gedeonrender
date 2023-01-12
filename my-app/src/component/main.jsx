@@ -7,15 +7,29 @@ import Slider from './slider/Slider'
 import { useState } from "react";
 import Body from "./body/Body";
 
-const Main = ({setBackground, listProduct}) => {
+const Main = ({listProduct, setStyleAppBar,appBarStyleTwo, styleAppBar, appBarStyleFirst, isBackgroundWhite}) => {
  const countainerSlide = {
     width: '100%',
     height: '750px'
  }
  
-useEffect(()=>{
-  setBackground('inherit')
-})
+ useEffect(()=>{
+
+  const handlscroll = () => {
+    const show  = window.scrollY > 640;
+    if(show) {
+      setStyleAppBar(appBarStyleTwo)
+    }else{
+      if(isBackgroundWhite){
+      }
+      setStyleAppBar(appBarStyleFirst)
+    }
+  }
+  document.addEventListener('scroll', handlscroll)
+  return () => {
+    document.removeEventListener('scroll', handlscroll)
+  }
+  },[])
 
  const [curentIndex, setCurentIndex] = useState(0);
  const desc = [
@@ -72,7 +86,12 @@ useEffect(()=>{
             fontSize: 12,
             zIndex:1,
            }}>
+            <Link to='/portfolio' style={{color: 'white',fontFamily: ['Quicksand', 'sans-serif'].join(','), 
+            fontSize: 12,
+            zIndex:1,
+            textDecoration: 'none'}}>
                 SHOW MORE WORKS
+                </Link>
             </Button>
           </Box>
 </div>
