@@ -23,10 +23,10 @@ const [error, setError] = useState(null);
   
   useEffect(()=>{
     fetchProduct()
-    .then(res => {setProduct(res.data); setIsLoaded(true); console.log('fetchmethod product res', res.data)})
+    .then(res => {setProduct(res.data); setIsLoaded(true); })
 
     fetchPicture()
-    .then(res => {setListProduct(res.data); setIsLoaded(true); console.log('fetchmethod listProduct res', res.data)})
+    .then(res => {setListProduct(res.data); setIsLoaded(true); })
   }, [])
   
   

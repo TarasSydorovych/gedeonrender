@@ -137,11 +137,18 @@ navRef.current = styleAppBar;
           </Typography>
           <Box sx={{marginLeft: 13, flexGrow: 1,  display: { xs: 'none', md: 'flex' } }}>
           
-          {pages.map((el) => {
-          return <Link style={{textDecoration: 'none'}} to={`/${el.toLowerCase()}`}> <MenuItem  style={listStyle}
+          {pages.map((el, index) => {
+           if(index === 0){
+            return <Link style={{textDecoration: 'none'}} to={`/`}> <MenuItem key={index}  style={listStyle}
            onMouseEnter={mouseEnter}
            onMouseLeave={mouseLeave} 
           >{el}</MenuItem></Link>
+           }else{
+          return <Link style={{textDecoration: 'none'}} to={`/${el.toLowerCase()}`}> <MenuItem key={index}  style={listStyle}
+           onMouseEnter={mouseEnter}
+           onMouseLeave={mouseLeave} 
+          >{el}</MenuItem></Link>
+        }
           })}
           
           

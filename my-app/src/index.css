@@ -294,11 +294,15 @@ cursor: pointer;
   background: #04b488;
   text-align: center;
   padding: 15px;
+  display: flex;
   border-radius: 5px;
+  justify-content: center;
+  align-items: center;
   color: white;
+  width: 100%;
   cursor: pointer;
   text-transform: uppercase;
-  height: 20px;
+  height: 40px;
   border-bottom: 5px solid #057358;
 }
 .btn:hover{
@@ -306,7 +310,7 @@ cursor: pointer;
   justify-content: center;
   align-items: center;
   transition-duration: 0.2s;
-  height: 23px;
+  height: 40px;
   border-bottom: 3px solid #057358;
 
 }
