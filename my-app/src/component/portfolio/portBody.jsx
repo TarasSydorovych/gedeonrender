@@ -4,9 +4,33 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import Typography from '@mui/material/Typography'
 import { Link, Router } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
 export default function PortBody({listProduct, product,setStyleAppBar,appBarStyleTwo}) {
+  let params = useParams();
+const [productCat, setProductCat] = useState([])
+
+useEffect(()=>{
+  setProductCat([])
+  for(let i=0; i < product.length; i++ ){
+    
+    if(params.category !== undefined){
+      console.log('prodcat',productCat)
+    if(`:${product[i].category.replace(/ /g,'').toLowerCase()}` === params.category.replace(/ /g,'').toLowerCase()){
+     
+      setProductCat(prev => [...prev, product[i]])
+      
+    }
+  
+  }
+  }
+},[params, product])
+
+
+
+
+  console.log('cat id', params.category)
   const [load, setLoad] = useState(false);
     const styleTypo = {
         width: '70%',
@@ -37,58 +61,115 @@ export default function PortBody({listProduct, product,setStyleAppBar,appBarStyl
    useEffect(()=>{
     setStyleAppBar(appBarStyleTwo)
     setLoad(true)
+   
    },[listProduct])
-   if(!load){
-    return <div>Load Picture</div>
+   if(params.category === undefined){
+    if(!load){
+      return <div>Load Picture</div>
+     }else{
+    return (
+      <>
+      <div className="content2">
+  
+  <ul className="listArt2">
+    {listArt.map((el, index)=>{
+      return <li key={index}>
+      <Link className="link2" to={`/portfolio/:${el}`}>{el}</Link>
+      </li>
+    })}
+    </ul>
+    </div>
+      <Typography 
+       variant="h6"
+       style={styleTypo}
+       >
+      A Gallery of Our Works
+      </Typography>
+      <Box sx={{ width: '97%', marginLeft: '1.5%', marginRight: '1.5%', marginBottom: '10px' }}>
+        <ImageList  variant="masonry" cols={3} gap={8}>
+          {product.map((item, index) => (
+            <ImageListItem className='wrapClassPic' key={index} >
+             {console.log(item.img)}
+              <img 
+              className='imageListHeader'
+                src={`/${item.img[0].img}?w=248&fit=crop&auto=format`}
+                srcSet={`/${item.img[0].img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.title}
+                loading="lazy"
+                onMouseEnter={mouseEnter}
+                onMouseLeave={mouseLeave} 
+              >
+                
+              </img>
+             <h1 className='h1ListHeader'
+             ><Link style={{
+              textDecoration: 'none',
+              color: '#142c2d',
+              fontWeight: 'bolder'
+             }} to={`/product/${item._id}`}>
+              {item.title}
+              </Link></h1>
+            </ImageListItem>
+          ))}
+        </ImageList>
+      </Box>
+      </>
+    );
+  }
    }else{
-  return (
-    <>
-    <div className="content2">
-
-<ul className="listArt2">
-  {listArt.map((el, index)=>{
-    return <li key={index}>
-    <Link className="link2" to='/'>{el}</Link>
-    </li>
-  })}
-  </ul>
-  </div>
-    <Typography 
-     variant="h6"
-     style={styleTypo}
-     >
-    A Gallery of Our Works
-    </Typography>
-    <Box sx={{ width: '97%', marginLeft: '1.5%', marginRight: '1.5%', marginBottom: '10px' }}>
-      <ImageList  variant="masonry" cols={3} gap={8}>
-        {product.map((item, index) => (
-          <ImageListItem className='wrapClassPic' key={index} >
-           {console.log(item.img)}
-            <img 
-            className='imageListHeader'
-              src={`/${item.img[0].img}?w=248&fit=crop&auto=format`}
-              srcSet={`/${item.img[0].img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              alt={item.title}
-              loading="lazy"
-              onMouseEnter={mouseEnter}
-              onMouseLeave={mouseLeave} 
-            >
-              
-            </img>
-           <h1 className='h1ListHeader'
-           ><Link style={{
-            textDecoration: 'none',
-            color: '#142c2d',
-            fontWeight: 'bolder'
-           }} to={`/product/${item._id}`}>
-            {item.title}
-            </Link></h1>
-          </ImageListItem>
-        ))}
-      </ImageList>
-    </Box>
-    </>
-  );
-}
+    if(!load){
+      return <div>Load Picture</div>
+     }else{
+    return (
+      <>
+      <div className="content2">
+  
+  <ul className="listArt2">
+    {listArt.map((el, index)=>{
+      return <li key={index}>
+      <Link className="link2" to={`/portfolio/:${el}`}>{el}</Link>
+      </li>
+    })}
+    </ul>
+    </div>
+      <Typography 
+       variant="h6"
+       style={styleTypo}
+       >
+      A Gallery of Our Works
+      </Typography>
+      <Box sx={{ width: '97%', marginLeft: '1.5%', marginRight: '1.5%', marginBottom: '10px' }}>
+        <ImageList  variant="masonry" cols={3} gap={8}>
+          {productCat.map((item, index) => (
+            <ImageListItem className='wrapClassPic' key={index} >
+             {console.log(item.img)}
+              <img 
+              className='imageListHeader'
+                src={`/${item.img[0].img}?w=248&fit=crop&auto=format`}
+                srcSet={`/${item.img[0].img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.title}
+                loading="lazy"
+                onMouseEnter={mouseEnter}
+                onMouseLeave={mouseLeave} 
+              >
+                
+              </img>
+             <h1 className='h1ListHeader'
+             ><Link style={{
+              textDecoration: 'none',
+              color: '#142c2d',
+              fontWeight: 'bolder'
+             }} to={`/product/${item._id}`}>
+              {item.title}
+              </Link></h1>
+            </ImageListItem>
+          ))}
+        </ImageList>
+      </Box>
+      </>
+    );
+  }
+   }
+  
 }
 

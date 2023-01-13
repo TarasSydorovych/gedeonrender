@@ -72,7 +72,7 @@ const Main = ({listProduct, setStyleAppBar,appBarStyleTwo, styleAppBar, appBarSt
 <ul className="listArt">
   {listArt.map((el, index)=>{
     return <li key={index}>
-    <Link className="link" to='/'>{el}</Link>
+    <Link className="link" to={`portfolio/:${el}`}>{el}</Link>
     </li>
   })}
 </ul>

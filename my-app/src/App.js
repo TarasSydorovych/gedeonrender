@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Main from './component/main'
 import PortBody from './component/portfolio/portBody'
+import PortBodyCat from './component/portfolio/portBody'
 import {Routes, Route} from 'react-router-dom'
 import Footer from './component/footer'
 import Header from './component/header'
@@ -44,7 +45,7 @@ const [error, setError] = useState(null);
       <Route path='/' element={<Main appBarStyleFirst={appBarStyleFirst} appBarStyleTwo={appBarStyleTwo} setStyleAppBar={setStyleAppBar} styleAppBar={styleAppBar} listProduct={listProduct}/>}/>
       <Route path='/product/:id' element={<Product appBarStyleTwo={appBarStyleTwo} setStyleAppBar={setStyleAppBar} product={product} styleAppBar={styleAppBar}/>}/>
       <Route path='/portfolio' element={<PortBody  product={product} listProduct={listProduct}  appBarStyleTwo={appBarStyleTwo} setStyleAppBar={setStyleAppBar}/>}/>
-      
+      <Route path='/portfolio/:category' element={<PortBody  product={product} listProduct={listProduct}  appBarStyleTwo={appBarStyleTwo} setStyleAppBar={setStyleAppBar}/>}/>
       </Routes>
       <Footer/>
 
